@@ -39,6 +39,18 @@ float Time = 0;
 float3 random(in float _x){
     return frac(sin(_x)*1e4);
 }
+float3 random3(float3 c)
+{
+    float j = 4096.0 * sin(dot(c, float3(17.0, 59.4, 15.0)));
+    float3 r;
+    r.z = frac(512.0 * j);
+    j *= .125;
+    r.x = frac(512.0 * j);
+    j *= .125;
+    r.y = frac(512.0 * j);
+    return r;
+}
+
 VertexShaderOutput MainVS(in VertexShaderInput input)
 {
 	VertexShaderOutput output = (VertexShaderOutput)0;
@@ -70,10 +82,12 @@ VertexShaderOutput MainVS(in VertexShaderInput input)
     output.TextureCoordinate = input.TextureCoordinate;
 
 	// Animate color
-   // input.Color.b = abs(seno);
-   // input.Color.g = abs(cos(Time * atenuacion));
+      input.Color.b = abs(seno);
+    // input.Color.g = abs(cos(Time * atenuacion));
 
 	// Propagate color by vertex
+    float3 colorRandom=random3(input.Position.xyz);
+   // input.Color.xyz=colorRandom;
     output.Color = input.Color;
 
     return output;
@@ -85,7 +99,7 @@ float4 MainPS(VertexShaderOutput input) : COLOR
     float4 textureColor = tex2D(textureSampler, input.TextureCoordinate);
     textureColor.a = 1;
 	// Color and texture are combined in this example, 80% the color of the texture and 20% that of the vertex
-    return 0.8 * textureColor + 0.2 * input.Color;
+    return saturate(abs(cos(Time)))*textureColor +  input.Color;
 }
 
 technique BasicColorDrawing

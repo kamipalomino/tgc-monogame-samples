@@ -53,7 +53,7 @@ namespace TGC.MonoGame.Samples.Samples.Shaders
             //Effect = new Effect(GraphicsDevice, byteCode);
 
             // Load a shader using Content pipeline.
-            Effect = Game.Content.Load<Effect>(ContentFolderEffects + "Ejercicios");
+            Effect = Game.Content.Load<Effect>(ContentFolderEffects + "BasicShader");
 
             base.LoadContent();
         }

@@ -232,6 +232,12 @@
 /processorParam:DebugMode=Auto
 /build:Effects/DebugTexture.fx
 
+#begin Effects/Ejercicios.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Effects/Ejercicios.fx
+
 #begin Effects/EnvironmentMap.fx
 /importer:EffectImporter
 /processor:EffectProcessor
