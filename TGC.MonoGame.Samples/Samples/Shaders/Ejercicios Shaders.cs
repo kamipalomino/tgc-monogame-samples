@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using TGC.MonoGame.Samples.Cameras;
 using TGC.MonoGame.Samples.Viewer;
-
+using TGC.MonoGame.Samples.Samples.Shaders;
 namespace TGC.MonoGame.Samples.Samples.Shaders
 {
     /// <summary>
@@ -14,16 +14,16 @@ namespace TGC.MonoGame.Samples.Samples.Shaders
     ///     It's the hello world of shaders.
     ///     Author: Mariano Banquiero
     /// </summary>
-    public class BasicShader : TGCSample
+    public class BasicShaderEjercicio : TGCSample
     {
         private float time;
 
         /// <inheritdoc />
-        public BasicShader(TGCViewer game) : base(game)
+        public BasicShaderEjercicio(TGCViewer game) : base(game)
         {
             Category = TGCSampleCategory.Shaders;
-            Name = "Basic Shader";
-            Description = "Basic Shader Sample. Animation by vertex shader and coloring by pixel shader.";
+            Name = "Ejercicio Shader";
+            Description = "Ejercicio Shader";
         }
 
         private Camera Camera { get; set; }
@@ -44,8 +44,9 @@ namespace TGC.MonoGame.Samples.Samples.Shaders
         {
             Model = Game.Content.Load<Model>(ContentFolder3D + "tgcito-classic/tgcito-classic");
             // From the effect of the model I keep the texture.
-            Texture = ((BasicEffect) Model.Meshes.FirstOrDefault()?.MeshParts.FirstOrDefault()?.Effect)?.Texture;
+                        // Enable default lighting for the Robot
 
+            Texture = ((BasicEffect) Model.Meshes.FirstOrDefault()?.MeshParts.FirstOrDefault()?.Effect)?.Texture;
             // Load a shader in runtime, outside the Content pipeline.
             // First you must run "mgfxc <SourceFile> <OutputFile> [/Debug] [/Profile:<DirectX_11,OpenGL>]"
             // https://docs.monogame.net/articles/tools/mgfxc.html
@@ -54,7 +55,7 @@ namespace TGC.MonoGame.Samples.Samples.Shaders
 
             // Load a shader using Content pipeline.
             Effect = Game.Content.Load<Effect>(ContentFolderEffects + "Ejercicios");
-
+            
             base.LoadContent();
         }
 
